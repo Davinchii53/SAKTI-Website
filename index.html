@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAKTI - Dukungan untuk Orang Tua & Pendidik Anak Istimewa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">SAKTI</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#abk-types">Jenis Anak Istimewa</a></li>
+                <li><a href="#journal">Jurnal</a></li>
+                <li><a href="#tim">Tim Kami</a></li>
+                <li><a href="#feedback">Feedback</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Dukungan Lengkap untuk Orang Tua & Pendidik Anak Istimewa</h1>
+            <p>Platform edukatif, komunitas, dan sumber daya untuk mendukung perkembangan optimal anak istimewa Indonesia</p>
+            <a href="#about" class="cta-button">Pelajari Lebih Lanjut</a>
+            <div class="scroll-indicator">↓</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-image">
+                💙
+            </div>
+            <div class="about-text">
+                <h3>Apa itu SAKTI?</h3>
+                <p><strong>SAKTI</strong> (Sadar Akan Kesehatan dan Tumbuh Kembang Anak Istimewa) adalah platform digital yang dirancang khusus untuk mendukung kesejahteraan psikologis orang tua, pendidik, dan keluarga dari anak istimewa di Indonesia.</p>
+                <p>Kami menyediakan sumber belajar edukatif, panduan praktis, dan komunitas pendukung yang memahami perjalanan unik dalam mendampingi anak istimewa.</p>
+                <p>Platform kami dirancang untuk membantu mengelola stres, memahami kebutuhan spesifik anak, dan tumbuh bersama dalam komunitas yang peduli dan suportif.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>Apa yang Kami Tawarkan</h2>
+        <p>Layanan lengkap untuk mendukung perjalanan Anda</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3>Sumber Belajar</h3>
+                <p>Akses artikel, panduan, dan video tentang berbagai jenis kebutuhan khusus anak dan cara mendukung perkembangan optimal</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Dukungan Komunitas</h3>
+                <p>Bergabung dengan orang tua, pendidik, dan profesional lain yang memahami perjalanan Anda secara mendalam</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABK Types Section -->
+    <section class="abk-types" id="abk-types">
+        <h2>Jenis-Jenis Anak Istimewa yang Kami Dukung</h2>
+        <p>Setiap anak istimewa memiliki keunikan dan potensi tersendiri. Pilih untuk melihat penjelasan dan sumber daya terkait</p>
+        <div class="abk-tags">
+            <div class="abk-tag" onclick="showABKAndJournal('autisme')">Autisme</div>
+            <div class="abk-tag" onclick="showABKAndJournal('adhd')">ADHD</div>
+            <div class="abk-tag" onclick="showABKAndJournal('disleksia')">Disleksia</div>
+            <div class="abk-tag" onclick="showABKAndJournal('speech-delay')">Speech Delay</div>
+            <div class="abk-tag" onclick="showABKAndJournal('down-syndrome')">Down Syndrome</div>
+            <div class="abk-tag" onclick="showABKAndJournal('tunagrahita')">Tunagrahita</div>
+            <div class="abk-tag" onclick="showABKAndJournal('tuna-rungu')">Tuna Rungu</div>
+            <div class="abk-tag" onclick="showABKAndJournal('bahasa-isyarat')">Bahasa Isyarat</div>
+        </div>
+    </section>
+
+    <!-- ABK Information Section -->
+    <section class="abk-info-section">
+        <div class="abk-info-container" id="abk-info">
+            <h3 class="info-placeholder">Pilih jenis anak istimewa di atas untuk melihat penjelasan lengkap</h3>
+        </div>
+    </section>
+
+    <!-- Data & Fakta Section -->
+    <section class="data-fakta">
+        <h2>Data & Fakta Perundungan Anak Istimewa di Indonesia</h2>
+        <p>Memahami situasi anak istimewa di Indonesia untuk memberikan dukungan yang lebih baik</p>
+        <div class="data-grid">
+            <div class="data-card">
+                <div class="data-number">1.6 Juta+</div>
+                <div class="data-label">Anak Istimewa di Indonesia</div>
+                <p>Membutuhkan dukungan khusus dalam pendidikan dan perkembangan</p>
+            </div>
+            <div class="data-card">
+                <div class="data-number">40%</div>
+                <div class="data-label">Mengalami Perundungan</div>
+                <p>Anak istimewa 40% lebih rentan mengalami bullying di lingkungan sekolah</p>
+            </div>
+            <div class="data-card">
+                <div class="data-number">65%</div>
+                <div class="data-label">Orang Tua Butuh Dukungan Mental</div>
+                <p>65% orang tua mengalami stres dan kecemasan dalam mendampingi anak istimewa</p>
+            </div>
+            <div class="data-card">
+                <div class="data-number">3 dari 5</div>
+                <div class="data-label">Tidak Mendapat Akses Pendidikan Layak</div>
+                <p>Akses pendidikan inklusif masih terbatas di banyak daerah</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journal Section -->
+    <section class="journal-section" id="journal">
+        <h2>Jurnal & Artikel: <span id="journal-title">Semua Kategori</span></h2>
+        <p class="journal-subtitle">Kumpulan jurnal, penelitian, dan artikel edukatif tentang anak istimewa</p>
+
+        <div class="journal-grid" id="journal-grid">
+            <!-- Autisme -->
+            <article class="journal-card" data-category="autisme">
+                <div class="journal-tag">Autisme</div>
+                <h3>Memahami Spektrum Autisme pada Anak</h3>
+                <p class="journal-excerpt">Panduan lengkap untuk orang tua dalam memahami karakteristik, diagnosis, dan pendekatan terapeutik untuk anak dengan autisme.</p>
+                <div class="journal-meta">
+                    <span>📅 20 Nov 2025</span>
+                    <span>⏱️ 8 menit baca</span>
+                </div>
+                <a href="https://e-journal.lp2m.uinjambi.ac.id/ojp/index.php/jdsr/article/view/1764"
+                class="read-more"
+                target="_blank"
+                rel="noopener noreferrer">
+                Baca Selengkapnya →</a>
+            </article>
+
+            <!-- ADHD -->
+            <article class="journal-card" data-category="adhd">
+                <div class="journal-tag">ADHD</div>
+                <h3>Strategi Efektif Mendampingi Anak dengan ADHD</h3>
+                <p class="journal-excerpt">Tips praktis dan strategi yang terbukti efektif untuk membantu anak ADHD fokus dan berkembang optimal di rumah dan sekolah.</p>
+                <div class="journal-meta">
+                    <span>📅 18 Nov 2025</span>
+                    <span>⏱️ 6 menit baca</span>
+                </div>
+                <a href="https://www.psychiatry.org/psychiatrists/practice/dsm"
+                class="read-more"
+                target="_blank"
+                rel="noopener noreferrer">
+                Baca Selengkapnya →</a>
+            </article>
+
+            <!-- Disleksia -->
+            <article class="journal-card" data-category="disleksia">
+                <div class="journal-tag">Disleksia</div>
+                <h3>Mengenali Tanda-tanda Disleksia Sejak Dini</h3>
+                <p class="journal-excerpt">Panduan untuk orang tua dalam mengenali gejala disleksia dan langkah-langkah intervensi dini yang dapat dilakukan.</p>
+                <div class="journal-meta">
+                    <span>📅 15 Nov 2025</span>
+                    <span>⏱️ 7 menit baca</span>
+                </div>
+                <a href="https://doi.org/10.1111/1471-3802.00040"
+                class="read-more"
+                target="_blank"
+                rel="noopener noreferrer">
+                Baca Selengkapnya →</a>
+            </article>
+
+            <!-- Speech Delay -->
+            <article class="journal-card" data-category="speech-delay">
+                <div class="journal-tag">Speech Delay</div>
+                <h3>Stimulasi Bicara untuk Anak dengan Keterlambatan Bahasa</h3>
+                <p class="journal-excerpt">Aktivitas dan teknik stimulasi yang dapat dilakukan di rumah untuk mendukung perkembangan bahasa anak.</p>
+                <div class="journal-meta">
+                    <span>📅 12 Nov 2025</span>
+                    <span>⏱️ 5 menit baca</span>
+                </div>
+                <a href="https://journal.unpar.ac.id/index.php/unpargraduate/article/view/846"
+                class="read-more"
+                target="_blank"
+                rel="noopener noreferrer">
+                Baca Selengkapnya →</a>
+            </article>
+
+            <!-- Down Syndrome -->
+            <article class="journal-card" data-category="down-syndrome">
+                <div class="journal-tag">Down Syndrome</div>
+                <h3>Mendukung Perkembangan Anak Down Syndrome</h3>
+                <p class="journal-excerpt">Panduan komprehensif tentang cara mendukung perkembangan fisik, kognitif, dan sosial anak dengan Down Syndrome.</p>
+                <div class="journal-meta">
+                    <span>📅 10 Nov 2025</span>
+                    <span>⏱️ 9 menit baca</span>
+                </div>
+                <a href="http://jtwb.org/index.php/jtwb/article/view/1"
+                class="read-more"
+                target="_blank"
+                rel="noopener noreferrer">
+                Baca Selengkapnya →</a>
+            </article>
+
+            <!-- Tunagrahita -->
+            <article class="journal-card" data-category="tunagrahita">
+                <div class="journal-tag">Tunagrahita</div>
+                <h3>Pendidikan Inklusif untuk Anak dengan Hambatan Intelektual</h3>
+                <p class="journal-excerpt">Strategi pembelajaran dan adaptasi kurikulum yang efektif untuk anak tunagrahita di lingkungan pendidikan inklusif.</p>
+                <div class="journal-meta">
+                    <span>📅 8 Nov 2025</span>
+                    <span>⏱️ 7 menit baca</span>
+                </div>
+                <a href="https://e-journal.unmas.ac.id/index.php/jsp/article/view/392"
+                class="read-more"
+                target="_blank"
+                rel="noopener noreferrer">
+                Baca Selengkapnya →</a>
+            </article>
+
+            <!-- Tuna Rungu -->
+            <article class="journal-card" data-category="tuna-rungu">
+                <div class="journal-tag">Tuna Rungu</div>
+                <h3>Komunikasi Efektif dengan Anak Tunarungu</h3>
+                <p class="journal-excerpt">Metode komunikasi dan teknologi bantu yang dapat membantu orang tua berkomunikasi lebih baik dengan anak tunarungu.</p>
+                <div class="journal-meta">
+                    <span>📅 5 Nov 2025</span>
+                    <span>⏱️ 6 menit baca</span>
+                </div>
+                <a href="https://e-journal.lp2m.uinjambi.ac.id/ojp/index.php/jdsr/article/view/1764"
+                class="read-more"
+                target="_blank"
+                rel="noopener noreferrer">
+                Baca Selengkapnya →</a>
+            </article>
+
+            <!-- Bahasa Isyarat -->
+            <article class="journal-card" data-category="bahasa-isyarat">
+                <div class="journal-tag">Bahasa Isyarat</div>
+                <h3>Panduan Dasar Belajar Bahasa Isyarat Indonesia (BISINDO)</h3>
+                <p class="journal-excerpt">Tutorial lengkap untuk orang tua yang ingin mempelajari bahasa isyarat untuk berkomunikasi dengan anak atau keluarga.</p>
+                <div class="journal-meta">
+                    <span>📅 3 Nov 2025</span>
+                    <span>⏱️ 10 menit baca</span>
+                </div>
+                <a href="https://id.hesperian.org/hhg/Helping_Children_Who_Are_Deaf:Mengajarkan_bahasa_isyarat_kepada_orangtua_anak-anak_tunarungu"
+                class="read-more"
+                target="_blank"
+                rel="noopener noreferrer">
+                Baca Selengkapnya →</a>
+            </article>
+
+            <!-- General -->
+            <article class="journal-card" data-category="all">
+                <div class="journal-tag">Umum</div>
+                <h3>Kesehatan Mental Orang Tua: Pentingnya Self-Care</h3>
+                <p class="journal-excerpt">Mengapa kesehatan mental orang tua sangat penting dan bagaimana cara menjaganya sambil mendampingi anak istimewa.</p>
+                <div class="journal-meta">
+                    <span>📅 1 Nov 2025</span>
+                    <span>⏱️ 8 menit baca</span>
+                </div>
+                <a href="https://qqmitraananda.com/berita/detail/menjadi-kuat-untuk-anak-istimewa-self-care-bagi-orang-tua-anak-berkebutuhan-khusus-abk-6"
+                class="read-more read-more-general"
+                target="_blank"
+                rel="noopener noreferrer">Baca Selengkapnya →</a>
+            </article>
+        </div>
+
+    </section>
+
+    <!-- Mengapa Kami Section (Tim) -->
+    <section class="why-us-section" id="tim">
+        <h2>Mengapa Kami Membuat SAKTI</h2>
+        <p>Setiap anggota tim memiliki motivasi dan cerita unik dalam mengembangkan platform ini</p>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">👩‍💼</div>
+                <h3>Nadya Maryam Pratiwi</h3>
+                <p class="team-role">Koordinator Proyek</p>
+                <p class="team-motivation">"Saya percaya bahwa setiap anak istimewa berhak mendapatkan dukungan dan pendidikan berkualitas. SAKTI hadir untuk membuat perbedaan."</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">👨‍💻</div>
+                <h3>Kelvin Nabil Anshary</h3>
+                <p class="team-role">Developer Website</p>
+                <p class="team-motivation">"Teknologi harus inklusif dan mudah diakses. Kami ingin membuat platform yang benar-benar membantu keluarga anak istimewa."</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">👩‍💼</div>
+                <h3> Annisa Nuur Hidayati</h3>
+                <p class="team-role">Pakar Pendidikan & Psikologi</p>
+                <p class="team-motivation">"Konten yang tepat dan berbasis riset dapat mengubah cara orang memahami dan mendukung anak istimewa."</p>
+            </div>
+            <div class="team-card">
+                <div class="team-avatar">👩‍💼</div>
+                <h3>Dinda Rahma Caesaran</h3>
+                <p class="team-role">Anggota Kelompok</p>
+                <p class="team-motivation">"Kami berkomitmen menciptakan ekosistem dukungan yang berkelanjutan untuk masyarakat anak istimewa."</p>
+            </div>
+                        <div class="team-card">
+                <div class="team-avatar">👨‍💼</div>
+                <h3>Azhar Andi Afif</h3>
+                <p class="team-role">Anggota Kelompok</p>
+                <p class="team-motivation">"Kami percaya anak istimewa harus mendapatkan akses informasi yang aman dan tepat"</p>
+            </div>
+                        <div class="team-card">
+                <div class="team-avatar">👨‍💼</div>
+                <h3>Muhammad Ariq</h3>
+                <p class="team-role">Anggota Kelompok</p>
+                <p class="team-motivation">"Dengan perkembangan teknologi, akses informasi akan semakin gampang"</p>
+            </div>
+        </div>
+    
+            <!-- Journal Links Container -->
+            <div id="journal-links-container" style="display: none; margin-top: 2rem;">
+                <!-- Akan diisi oleh JavaScript saat kategori diklik -->
+            </div>
+</section>
+
+    <!-- Kolaborasi Kampus Section -->
+    <section class="collaboration-section">
+        <h2>Kolaborasi & Dukungan Kampus</h2>
+        <p>SAKTI dikembangkan melalui kolaborasi lintas institusi pendidikan</p>
+        <div class="collaboration-grid">
+            <div class="collaboration-card">
+                <div class="collab-logo-container">
+                    <img src="assets/logo/stia-lan-bandung-logo.png" alt="Logo STIA LAN Bandung" class="collab-logo-img">
+                </div>
+                <h3>STIA LAN Bandung</h3>
+                <p>Sekolah Tinggi Ilmu Administrasi Lembaga Administrasi Negara Bandung mendukung riset dan pengembangan kebijakan publik untuk anak istimewa.</p>
+            </div>
+            <div class="collaboration-card">
+                <div class="collab-logo-container">
+                    <img src="assets/logo/Logo-Binus-University-Universitas-Bina-Nusantara-Original-PNG.png" alt="Logo BINUS University" class="collab-logo-img">
+                </div>
+                <h3>BINUS University</h3>
+                <p>Bina Nusantara University turut berkontribusi dalam aspek teknologi, sistem informasi, dan pengembangan platform digital untuk anak istimewa.</p>
+            </div> 
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <h2>Dampak SAKTI</h2>
+        <p>Komitmen kami terhadap anak istimewa dan keluarganya</p>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>1.6 Juta+</h3>
+                <p>Anak istimewa yang membutuhkan dukungan</p>
+            </div>
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Gratis untuk semua pengunjung</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Platform tersedia kapan saja</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="feedback-section" id="feedback">
+        <h2>Komentar & Feedback Pengunjung</h2>
+        <p>Bagikan pengalaman dan pendapat Anda untuk membantu kami terus berkembang</p>
+
+        <div class="feedback-form">
+            <form id="feedback-form">
+                <div class="form-group">
+                    <label for="feedback-name">Nama Anda</label>
+                    <input type="text" id="feedback-name" name="name" placeholder="Masukkan nama" required>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-email">Email (Opsional)</label>
+                    <input type="email" id="feedback-email" name="email" placeholder="Masukkan email">
+                </div>
+                <div class="form-group">
+                    <label for="feedback-message">Pesan/Feedback Anda</label>
+                    <textarea id="feedback-message" name="message" rows="5" placeholder="Tulis feedback Anda di sini..." required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Kirim Feedback</button>
+            </form>
+        </div>
+
+        <div class="feedback-list" id="feedback-list">
+            <h3>Feedback dari Pengunjung</h3>
+            <div id="comments-container">
+                <p class="no-comments">Jadilah yang pertama memberikan feedback!</p>
+            </div>
+            <div id="pagination" class="pagination-container"></div>
+        </div>
+    </section>
+
+    <!-- Why SAKTI Section -->
+    <section class="why-sakti">
+        <h2>Mengapa Memilih SAKTI?</h2>
+        <p>Komitmen kami untuk mendukung Anda</p>
+        <div class="why-grid">
+            <div class="why-item">
+                <div class="check-icon">✓</div>
+                <div class="why-item-content">
+                    <h3>Konten Berkualitas</h3>
+                    <p>Semua konten dikurasi dan dikembangkan berdasarkan riset terkini tentang anak istimewa</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="check-icon">✓</div>
+                <div class="why-item-content">
+                    <h3>Berbasis Riset</h3>
+                    <p>Metode dan informasi dikembangkan berdasarkan penelitian dari para ahli di bidangnya</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="check-icon">✓</div>
+                <div class="why-item-content">
+                    <h3>Aman & Suportif</h3>
+                    <p>Komunitas kami adalah ruang aman untuk berbagi tanpa takut dihakimi</p>
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="check-icon">✓</div>
+                <div class="why-item-content">
+                    <h3>Akses Mudah & Gratis</h3>
+                    <p>Platform dapat diakses kapan saja, di mana saja untuk semua orang secara gratis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-about">
+                <h3>SAKTI</h3>
+                <p>Sadar Akan Kesehatan dan Tumbuh Kembang Anak Istimewa</p>
+                <p>Platform dukungan untuk orang tua, pendidik, dan keluarga anak istimewa di Indonesia.</p>
+                <div class="social-icons">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Tautan Cepat</h4>
+                <ul>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#features">Layanan</a></li>
+                    <li><a href="#journal">Jurnal</a></li>
+                    <li><a href="#tim">Tim Kami</a></li>
+                    <li><a href="#feedback">Feedback</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SAKTI. Kolaborasi STIA LAN Bandung & Mitra Kampus Lainnya. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
