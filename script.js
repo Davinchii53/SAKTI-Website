@@ -1,12 +1,35 @@
+// ==================== SUPABASE CONFIGURATION ====================
+// GANTI DENGAN KREDENSIAL SUPABASE ANDA
+const SUPABASE_URL = 'https://oksizghhxhbeujtsodou.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9rc2l6Z2hoeGhiZXVqdHNvZG91Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3Nzc0OTYsImV4cCI6MjA4MTM1MzQ5Nn0.cPUrc8c1WlUwvnJWOYQAYfUCnugNhOrXQx482Zkbx_Y';
+
+// Initialize Supabase client dengan pengecekan
+let supabase = null;
+
+function initSupabase() {
+    try {
+        if (window.supabase && window.supabase.createClient) {
+            supabase = window.supabase.createClient('https://oksizghhxhbeujtsodou.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9rc2l6Z2hoeGhiZXVqdHNvZG91Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU3Nzc0OTYsImV4cCI6MjA4MTM1MzQ5Nn0.cPUrc8c1WlUwvnJWOYQAYfUCnugNhOrXQx482Zkbx_Y');
+            console.log('✅ Supabase initialized');
+            return true;
+        } else {
+            console.warn('⚠️ Supabase library not loaded yet');
+            return false;
+        }
+    } catch (error) {
+        console.error('❌ Error initializing Supabase:', error);
+        return false;
+    }
+}
+
 // ==================== SMOOTH SCROLL NAVIGATION ====================
-// Fungsi untuk smooth scroll dengan offset untuk fixed header
 function smoothScrollTo(targetId) {
     const target = document.querySelector(targetId);
     if (!target) return;
 
     const headerHeight = document.querySelector('header').offsetHeight;
     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-    const offsetPosition = targetPosition - headerHeight - 20; // 20px extra padding
+    const offsetPosition = targetPosition - headerHeight - 20;
 
     window.scrollTo({
         top: offsetPosition,
@@ -14,32 +37,29 @@ function smoothScrollTo(targetId) {
     });
 }
 
-// Event listener untuk semua navigation links
 document.addEventListener('DOMContentLoaded', () => {
-    // Smooth scroll untuk navigation menu
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
-            // Skip jika href hanya "#" tanpa target
             if (href === '#' || href === '#!') {
                 e.preventDefault();
                 return;
             }
 
-            // Cek apakah target element ada
             const targetElement = document.querySelector(href);
             if (targetElement) {
                 e.preventDefault();
                 smoothScrollTo(href);
-                
-                // Update URL tanpa jump
                 history.pushState(null, null, href);
             }
         });
     });
 
-    // Initialize other features
+    // Initialize Supabase setelah DOM ready
+    initSupabase();
+    
+    // Initialize app
     initializeApp();
 });
 
@@ -49,7 +69,6 @@ function toggleMenu() {
     navLinks.classList.toggle('active');
 }
 
-// Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
         document.getElementById('navLinks').classList.remove('active');
@@ -219,7 +238,6 @@ const abkData = {
     }
 };
 
-// ==================== JOURNAL & ARTICLE LINKS ====================
 const journalLinks = {
     'tuna-rungu': {
         jurnalUrl: 'https://e-journal.lp2m.uinjambi.ac.id/ojp/index.php/jdsr/article/view/1764',
@@ -366,77 +384,144 @@ function initializeApp() {
     loadComments();
 }
 
-// ==================== FEEDBACK & PAGINATION ====================
+// ==================== SUPABASE FEEDBACK FUNCTIONS ====================
 const ITEMS_PER_PAGE = 3;
 let currentPage = 1;
 
-function addComment(name, email, message) {
-    saveComment(name, email, message);
-    currentPage = 1;
-    loadComments(); 
+// Add new feedback to Supabase
+async function addComment(name, email, message) {
+    // Cek apakah Supabase sudah diinisialisasi
+    if (!supabase) {
+        const initialized = initSupabase();
+        if (!initialized) {
+            alert('❌ Koneksi database belum siap. Pastikan Supabase sudah dikonfigurasi dengan benar.');
+            return;
+        }
+    }
+
+    try {
+        // Show loading state
+        const submitBtn = document.querySelector('.btn-submit');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Mengirim...';
+        submitBtn.disabled = true;
+
+        // Insert to Supabase
+        const { data, error } = await supabase
+            .from('feedbacks')
+            .insert([
+                { 
+                    name: name, 
+                    email: email || null,
+                    message: message 
+                }
+            ])
+            .select();
+
+        if (error) throw error;
+
+        // Reset form and reload comments
+        currentPage = 1;
+        await loadComments();
+        
+        // Show success message
+        alert('✅ Feedback berhasil dikirim! Terima kasih atas masukan Anda.');
+        
+        // Restore button
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+
+    } catch (error) {
+        console.error('Error adding comment:', error);
+        alert('❌ Gagal mengirim feedback. Silakan coba lagi.\n\nDetail error: ' + error.message);
+        
+        // Restore button
+        const submitBtn = document.querySelector('.btn-submit');
+        submitBtn.textContent = 'Kirim Feedback';
+        submitBtn.disabled = false;
+    }
 }
 
-function saveComment(name, email, message) {
-    let comments = JSON.parse(localStorage.getItem('sakti-comments')) || [];
-
-    const comment = {
-        name: name,
-        email: email,
-        message: message,
-        date: new Date().toISOString()
-    };
-
-    comments.unshift(comment);
-    localStorage.setItem('sakti-comments', JSON.stringify(comments));
-}
-
-function loadComments() {
-    const comments = JSON.parse(localStorage.getItem('sakti-comments')) || [];
+// Load comments from Supabase with pagination
+async function loadComments() {
     const commentsContainer = document.getElementById('comments-container');
     const paginationContainer = document.getElementById('pagination');
 
-    commentsContainer.innerHTML = '';
-    paginationContainer.innerHTML = '';
+    if (!commentsContainer) return;
 
-    if (comments.length === 0) {
-        commentsContainer.innerHTML = '<p class="no-comments">Jadilah yang pertama memberikan feedback!</p>';
-        return;
+    // Cek apakah Supabase sudah diinisialisasi
+    if (!supabase) {
+        const initialized = initSupabase();
+        if (!initialized) {
+            commentsContainer.innerHTML = '<p class="no-comments">⚠️ Database belum tersedia. Pastikan Supabase sudah dikonfigurasi.</p>';
+            if (paginationContainer) paginationContainer.innerHTML = '';
+            return;
+        }
     }
 
-    const totalPages = Math.ceil(comments.length / ITEMS_PER_PAGE);
+    // Show loading state
+    commentsContainer.innerHTML = '<p class="no-comments">Memuat feedback...</p>';
+    if (paginationContainer) paginationContainer.innerHTML = '';
 
-    if (currentPage > totalPages) currentPage = totalPages;
-    if (currentPage < 1) currentPage = 1;
+    try {
+        // Get all feedbacks, ordered by newest first
+        const { data: comments, error } = await supabase
+            .from('feedbacks')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    const commentsToShow = comments.slice(startIndex, endIndex);
+        if (error) throw error;
 
-    commentsToShow.forEach(comment => {
-        const commentDiv = document.createElement('div');
-        commentDiv.className = 'comment-item';
-        commentDiv.style.animation = 'fadeIn 0.5s';
+        // Clear loading state
+        commentsContainer.innerHTML = '';
 
-        const date = new Date(comment.date);
-        const dateStr = date.toLocaleDateString('id-ID', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
+        if (!comments || comments.length === 0) {
+            commentsContainer.innerHTML = '<p class="no-comments">Jadilah yang pertama memberikan feedback!</p>';
+            return;
+        }
+
+        // Calculate pagination
+        const totalPages = Math.ceil(comments.length / ITEMS_PER_PAGE);
+        
+        if (currentPage > totalPages) currentPage = totalPages;
+        if (currentPage < 1) currentPage = 1;
+
+        const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+        const endIndex = startIndex + ITEMS_PER_PAGE;
+        const commentsToShow = comments.slice(startIndex, endIndex);
+
+        // Render comments
+        commentsToShow.forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment-item';
+            commentDiv.style.animation = 'fadeIn 0.5s';
+
+            const date = new Date(comment.created_at);
+            const dateStr = date.toLocaleDateString('id-ID', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            commentDiv.innerHTML = `
+                <div class="comment-name">${comment.name}</div>
+                <div class="comment-date">${dateStr}</div>
+                <div class="comment-text">${comment.message}</div>
+            `;
+
+            commentsContainer.appendChild(commentDiv);
         });
 
-        commentDiv.innerHTML = `
-            <div class="comment-name">${comment.name}</div>
-            <div class="comment-date">${dateStr}</div>
-            <div class="comment-text">${comment.message}</div>
-        `;
+        // Render pagination if needed
+        if (totalPages > 1 && paginationContainer) {
+            renderPaginationButtons(totalPages, paginationContainer);
+        }
 
-        commentsContainer.appendChild(commentDiv);
-    });
-
-    if (totalPages > 1) {
-        renderPaginationButtons(totalPages, paginationContainer);
+    } catch (error) {
+        console.error('Error loading comments:', error);
+        commentsContainer.innerHTML = '<p class="no-comments">❌ Gagal memuat feedback. Silakan refresh halaman.<br>Detail: ' + error.message + '</p>';
     }
 }
 
@@ -448,7 +533,8 @@ function renderPaginationButtons(totalPages, container) {
         prevBtn.onclick = () => {
             currentPage--;
             loadComments();
-            document.getElementById('feedback-list').scrollIntoView({ behavior: 'smooth' });
+            const feedbackList = document.getElementById('feedback-list');
+            if (feedbackList) feedbackList.scrollIntoView({ behavior: 'smooth' });
         };
         container.appendChild(prevBtn);
     }
@@ -460,7 +546,8 @@ function renderPaginationButtons(totalPages, container) {
         btn.onclick = () => {
             currentPage = i;
             loadComments();
-            document.getElementById('feedback-list').scrollIntoView({ behavior: 'smooth' });
+            const feedbackList = document.getElementById('feedback-list');
+            if (feedbackList) feedbackList.scrollIntoView({ behavior: 'smooth' });
         };
         container.appendChild(btn);
     }
@@ -472,7 +559,8 @@ function renderPaginationButtons(totalPages, container) {
         nextBtn.onclick = () => {
             currentPage++;
             loadComments();
-            document.getElementById('feedback-list').scrollIntoView({ behavior: 'smooth' });
+            const feedbackList = document.getElementById('feedback-list');
+            if (feedbackList) feedbackList.scrollIntoView({ behavior: 'smooth' });
         };
         container.appendChild(nextBtn);
     }
